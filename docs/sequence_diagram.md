@@ -179,8 +179,8 @@ sequenceDiagram
 
         loop foreach car in Cars
             RacingCarEntries -->> RacingCar : moveOrStop()
-            RacingCar -->> RacingCar : getRandomNumber()
-            opt can move
+            RacingCar -->> RacingCar : canMove()
+            opt canMove is true
                 RacingCar -->>+ RacingCar : move()
                 RacingCar -->>- Distance : increase()
             end
