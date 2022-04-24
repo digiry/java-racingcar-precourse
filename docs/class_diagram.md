@@ -123,7 +123,7 @@ classDiagram
         +getLaps()
     }
     class RacingCar {
-        +canMove()
+        +moveOrStop()
     }
     class CarName {
         +toString()

@@ -178,9 +178,11 @@ sequenceDiagram
         Circuit -->> RacingCarEntries : takeALap()
 
         loop foreach car in Cars
-            RacingCarEntries -->> RacingCar : canMove()
-            opt canMove() is true
-                RacingCar -->> Distance : increase()
+            RacingCarEntries -->> RacingCar : moveOrStop()
+            RacingCar -->> RacingCar : getRandomNumber()
+            opt can move
+                RacingCar -->>+ RacingCar : move()
+                RacingCar -->>- Distance : increase()
             end
         end 
 
