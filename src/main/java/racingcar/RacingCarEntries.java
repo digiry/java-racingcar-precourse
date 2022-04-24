@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class RacingCarEntries implements Iterable<RacingCar> {
@@ -26,6 +27,23 @@ public class RacingCarEntries implements Iterable<RacingCar> {
         for (RacingCar car : entries) {
             car.moveOrStop();
         }
+    }
+
+    public void sortReverse() {
+        entries.sort(Collections.reverseOrder());
+    }
+
+    public CommaSeparatedCarNames getWinnerNames() {
+        CommaSeparatedCarNames csv_names = new CommaSeparatedCarNames();
+
+        sortReverse();
+
+        RacingCar top = entries.get(0);
+        for (int i = 0; (i < entries.size()) && (top.compareTo(entries.get(i)) == 0); i++){
+            csv_names.append(entries.get(i).getCarName());
+        }
+
+        return csv_names;
     }
 
     @Override
