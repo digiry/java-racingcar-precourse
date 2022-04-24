@@ -51,4 +51,25 @@ public class CommaSeparatedCarNamesTest {
             CommaSeparatedCarNames csv_names = new CommaSeparatedCarNames(sample_names);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("기본 생성자로 생성하고 이름을 추가할 수 있는지 검사한다")
+    void appendNameToNewCommaSeparatedCarNames() {
+        CommaSeparatedCarNames csv_names = new CommaSeparatedCarNames();
+
+        csv_names.append(new CarName("pobi"));
+
+        assertThat(csv_names.get(0).toString()).isEqualTo("pobi");
+    }
+
+    @Test
+    @DisplayName("추가한 이름들로 콤마 구분한 문자열을 반환하는지 검사한다")
+    void returnFormattedNamesWithComma() {
+        CommaSeparatedCarNames csv_names = new CommaSeparatedCarNames();
+
+        csv_names.append(new CarName("pobi"));
+        csv_names.append(new CarName("woni"));
+
+        assertThat(csv_names.toString()).isEqualTo("pobi,woni");
+    }
 }
