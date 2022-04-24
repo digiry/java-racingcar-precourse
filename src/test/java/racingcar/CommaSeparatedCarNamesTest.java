@@ -1,6 +1,7 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,5 +40,15 @@ public class CommaSeparatedCarNamesTest {
         for (CarName name : csv_names) {
             assertThat(new String[]{"pobi", "woni"}).contains(name.toString());
         }
+    }
+
+    @Test
+    @DisplayName("이름 길이 규칙을 안 지킨 이름 문자열을 입력 받을 때 예외를 발생하는지 검사한다")
+    void throwIllegalArgumentExceptionIfInputNameViolateNamingRule() {
+        String sample_names = "pobi,overname";
+
+        assertThatThrownBy(() -> {
+            CommaSeparatedCarNames csv_names = new CommaSeparatedCarNames(sample_names);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }
