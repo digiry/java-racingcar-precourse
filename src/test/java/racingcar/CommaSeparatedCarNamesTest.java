@@ -2,8 +2,6 @@ package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,8 +14,8 @@ public class CommaSeparatedCarNamesTest {
         CommaSeparatedCarNames csv_names = new CommaSeparatedCarNames(sample_names);
 
         assertThat(csv_names.size()).isEqualTo(2);
-        assertThat(csv_names.get(0)).isEqualTo("pobi");
-        assertThat(csv_names.get(1)).isEqualTo("woni");
+        assertThat(csv_names.get(0).toString()).isEqualTo("pobi");
+        assertThat(csv_names.get(1).toString()).isEqualTo("woni");
     }
 
     @Test
@@ -28,7 +26,7 @@ public class CommaSeparatedCarNamesTest {
         CommaSeparatedCarNames csv_names = new CommaSeparatedCarNames(sample_name);
 
         assertThat(csv_names.size()).isEqualTo(1);
-        assertThat(csv_names.get(0)).isEqualTo("pobi");
+        assertThat(csv_names.get(0).toString()).isEqualTo("pobi");
     }
 
     @Test
@@ -38,8 +36,8 @@ public class CommaSeparatedCarNamesTest {
 
         CommaSeparatedCarNames csv_names = new CommaSeparatedCarNames(sample_names);
 
-        for (String name : csv_names) {
-            assertThat(new String[]{"pobi", "woni"}).contains(name);
+        for (CarName name : csv_names) {
+            assertThat(new String[]{"pobi", "woni"}).contains(name.toString());
         }
     }
 }

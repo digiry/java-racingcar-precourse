@@ -1,17 +1,20 @@
 package racingcar;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 
-public class CommaSeparatedCarNames implements Iterable<String> {
-    private ArrayList<String> names;
+public class CommaSeparatedCarNames implements Iterable<CarName> {
+    private ArrayList<CarName> names;
 
     public CommaSeparatedCarNames(String car_names) {
-        names = new ArrayList(Arrays.asList(car_names.split(",")));
+        names = new ArrayList<>();
+
+        for (String name : car_names.split(",")) {
+            names.add(new CarName(name));
+        }
     }
 
-    public String get(int index) {
+    public CarName get(int index) {
         return names.get(index);
     }
 
@@ -20,11 +23,11 @@ public class CommaSeparatedCarNames implements Iterable<String> {
     }
 
     @Override
-    public Iterator<String> iterator() {
+    public Iterator<CarName> iterator() {
         return new CarNamesIterator();
     }
 
-    class CarNamesIterator implements Iterator<String> {
+    class CarNamesIterator implements Iterator<CarName> {
 
         private int index = 0;
 
@@ -34,8 +37,8 @@ public class CommaSeparatedCarNames implements Iterable<String> {
         }
 
         @Override
-        public String next() {
-            String current = names.get(index);
+        public CarName next() {
+            CarName current = names.get(index);
             index++;
 
             return current;
