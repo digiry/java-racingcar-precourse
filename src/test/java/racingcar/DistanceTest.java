@@ -43,4 +43,16 @@ public class DistanceTest {
 
         assertThat(dist.toDashMarkup()).isEqualTo(dashSteps);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1:0:1", "1:1:0", "0:1:-1"}, delimiter = ':')
+    @DisplayName("두 거리 객체를 비교 가능한지 검사한다")
+    void compareBothDistances(int a_steps, int b_steps, int expected) {
+        Distance a_dist = makeDistanceMovedAs(a_steps);
+        Distance b_dist = makeDistanceMovedAs(b_steps);
+
+        int result = a_dist.compareTo(b_dist);
+
+        assertThat(result).isEqualTo(expected);
+    }
 }
