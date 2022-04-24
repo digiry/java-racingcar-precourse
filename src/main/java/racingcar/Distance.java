@@ -10,7 +10,7 @@ public class Distance implements Comparable<Distance> {
         distance = DEFAULT_DISTANCE;
     }
 
-    public int getDistance() {
+    public int getNumericDistance() {
         return distance;
     }
 
@@ -24,9 +24,9 @@ public class Distance implements Comparable<Distance> {
 
     @Override
     public int compareTo(Distance other) {
-        if (distance > other.getDistance()) {
+        if (distance > other.getNumericDistance()) {
             return 1;
-        } else if (distance < other.getDistance()) {
+        } else if (distance < other.getNumericDistance()) {
             return -1;
         } else {
             return 0;

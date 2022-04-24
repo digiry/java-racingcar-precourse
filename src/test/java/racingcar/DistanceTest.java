@@ -13,7 +13,7 @@ public class DistanceTest {
     void checkZeroDistanceAsDefaultWhenCreation() {
         Distance dist = new Distance();
 
-        assertThat(dist.getDistance()).isEqualTo(Distance.DEFAULT_DISTANCE);
+        assertThat(dist.getNumericDistance()).isEqualTo(Distance.DEFAULT_DISTANCE);
     }
 
     Distance makeDistanceMovedAs(int step) {
@@ -32,7 +32,7 @@ public class DistanceTest {
         int one_step = 1;
         Distance dist = makeDistanceMovedAs(one_step);
 
-        assertThat(dist.getDistance()).isEqualTo(one_step);
+        assertThat(dist.getNumericDistance()).isEqualTo(one_step);
     }
 
     @ParameterizedTest
