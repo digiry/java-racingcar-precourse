@@ -67,7 +67,7 @@ sequenceDiagram
     participant InputCarNamesState
     participant GameController
     participant GameView
-    participant CarNames
+    participant CommaSeparatedCarNames
     participant Context
     participant Circuit
     participant RacingCarEntries
@@ -87,23 +87,23 @@ sequenceDiagram
         loop occur IllegalArgumentExpception
             GameView -->> GameView: printCarNamesErrorMessage()
             GameView -->> GameView: readCarNames()
-            GameView -->> CarNames: new(names)
+            GameView -->> CommaSeparatedCarNames: new(names)
         end
 
-        GameView -->> GameController : CarNames
-        GameController -->> InputCarNamesState : CarNames
-        InputCarNamesState -->> Context : new(CarNames)
+        GameView -->> GameController : CommanSeparatedCarNames
+        GameController -->> InputCarNamesState : CommanSeparatedCarNames
+        InputCarNamesState -->> Context : new(CommaSeparatedCarNames)
         InputCarNamesState -->> GameBoard : Context
 
         GameBoard -->> InputCarNamesState : evaluateData(context)
         InputCarNamesState -->> GameController : registerCarEntries(context.carnames)
         GameController -->> Circuit : registerCarEntries(carnames)
 
-        loop foreach CarName in CarNames
-            Circuit -->> Circuit : registerCar(CarName)
-            Circuit -->> RacingCarEntries : addNewRacingCar(CarName)
-            RacingCarEntries -->> RacingCar : new RacingCar(CarName)
-            RacingCar --> CarName : new CarName(CarName)
+        loop foreach name in CommanSeparatedCarNames
+            Circuit -->> Circuit : registerCar(name)
+            Circuit -->> RacingCarEntries : addNewRacingCar(name)
+            RacingCarEntries -->> RacingCar : new RacingCar(name)
+            RacingCar --> CarName : new CarName(name)
             RacingCar --> Distance : new Distance()
         end
 
@@ -269,14 +269,14 @@ sequenceDiagram
             RacingCarEntries -->>- Distance : compareTo()
 
             opt append car name if car has longest distance
-                RacingCarEntries -->> CarNames : append(name)
+                RacingCarEntries -->> CommaSeparatedCarNames : append(name)
             end
         end
 
-        RacingCarEntries -->> Circuit : CarNames
-        Circuit -->> GameController : CarNames
+        RacingCarEntries -->> Circuit : CommanSeparatedCarNames
+        Circuit -->> GameController : CommanSeparatedCarNames
         GameController -->> GameView : printWinnerNames(carnames)
-        GameView -->> CarNames : toString()
+        GameView -->> CommaSeparatedCarNames : toString()
 
         GameBoard -->> WinnerResultState : readInput()
         WinnerResultState -->> GameController : getEmptyInputData()

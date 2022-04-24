@@ -6,8 +6,8 @@
 
 - [x] CarName: 자동차 이름을 다루는 함수를 구현한다
 - [x] CarName: 자동차 이름 유효성을 검사한다
-- [ ] CarNames: 자동차 이름 목록을 다루는 함수를 구현한다
-- [ ] CarNames: 자동차 이름 목록 생성 시 입력 인자 유효성을 검사한다
+- [ ] CommaSeparatedCarNames: 콤마 구분한 자동차 이름 문자열을 다루는 함수를 구현한다
+- [ ] CommaSeparatedCarNames: 자동차 이름 목록 생성 시 입력 인자 유효성을 검사한다
 - [ ] Distance: 이동 거리를 다루는 함수를 구현한다
 - [ ] RacingCar: 경주 자동차를 생성, 이동여부를 구하는 함수를 구현한다
 - [ ] RacingCar: 자동차 이름과 이동 거리 요소를 다루는 함수를 구현한다
