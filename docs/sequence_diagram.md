@@ -90,8 +90,8 @@ sequenceDiagram
             GameView -->> CommaSeparatedCarNames: new(names)
         end
 
-        GameView -->> GameController : CommanSeparatedCarNames
-        GameController -->> InputCarNamesState : CommanSeparatedCarNames
+        GameView -->> GameController : CommaSeparatedCarNames
+        GameController -->> InputCarNamesState : CommaSeparatedCarNames
         InputCarNamesState -->> Context : new(CommaSeparatedCarNames)
         InputCarNamesState -->> GameBoard : Context
 
@@ -99,7 +99,7 @@ sequenceDiagram
         InputCarNamesState -->> GameController : registerCarEntries(context.carnames)
         GameController -->> Circuit : registerCarEntries(carnames)
 
-        loop foreach name in CommanSeparatedCarNames
+        loop foreach name in CommaSeparatedCarNames
             Circuit -->> Circuit : registerCar(name)
             Circuit -->> RacingCarEntries : addNewRacingCar(name)
             RacingCarEntries -->> RacingCar : new RacingCar(name)
@@ -273,8 +273,8 @@ sequenceDiagram
             end
         end
 
-        RacingCarEntries -->> Circuit : CommanSeparatedCarNames
-        Circuit -->> GameController : CommanSeparatedCarNames
+        RacingCarEntries -->> Circuit : CommaSeparatedCarNames
+        Circuit -->> GameController : CommaSeparatedCarNames
         GameController -->> GameView : printWinnerNames(carnames)
         GameView -->> CommaSeparatedCarNames : toString()
 
