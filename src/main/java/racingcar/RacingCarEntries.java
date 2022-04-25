@@ -23,6 +23,10 @@ public class RacingCarEntries implements Iterable<RacingCar> {
         return entries.get(index);
     }
 
+    public int size() {
+        return  entries.size();
+    }
+
     public void takeALap() {
         for (RacingCar car : entries) {
             car.moveOrStop();
