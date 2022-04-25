@@ -1,5 +1,6 @@
 package racingcar.states;
 
+import racingcar.CommaSeparatedCarNames;
 import racingcar.Context;
 import racingcar.GameBoard;
 import racingcar.GameController;
@@ -17,21 +18,23 @@ public class InputCarNamesState implements State {
 
     @Override
     public void viewUpdate() {
-        
+        gameController.printCarNamesInputRequestMessage();
     }
 
     @Override
     public Context readInput() {
-        return null;
+        CommaSeparatedCarNames car_names = gameController.readCarNames();
+        Context context = new Context(car_names);
+        return context;
     }
 
     @Override
     public void evaluateData(Context context) {
-
+        gameController.registerCarEntries(context.getCarNames());
     }
 
     @Override
     public void nextState() {
-
+        gameBoard.setState(gameBoard.getInputLapCountState());
     }
 }
