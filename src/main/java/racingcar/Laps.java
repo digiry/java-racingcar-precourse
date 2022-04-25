@@ -9,7 +9,14 @@ public class Laps {
     }
 
     public Laps(int lap_count) {
+        validate(lap_count);
         lap = lap_count;
+    }
+
+    private void validate(int lap_count) {
+        if (lap_count < MIN_LAP_COUNT) {
+            throw new IllegalArgumentException("Laps 음수 에러.");
+        }
     }
 
     public int getNumericLap() {
@@ -17,6 +24,7 @@ public class Laps {
     }
 
     public void setLap(int lap_count) {
+        validate(lap_count);
         lap = lap_count;
     }
 

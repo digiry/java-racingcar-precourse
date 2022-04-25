@@ -1,6 +1,7 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -47,5 +48,23 @@ public class LapsTest {
         laps.decrease();
 
         assertThat(laps.hasRemainingLaps()).isFalse();
+    }
+
+    @Test
+    @DisplayName("Laps 생성할 때 음수를 전달하면 예외를 발생하는지 검사한다")
+    void throwIllegalArgumentExceptionIfCreationWithMinus() {
+        assertThatThrownBy(() -> {
+            Laps laps = new Laps(-1);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("Laps를 생성하고 음수를 할당하면 예외를 발생하는지 검사한다")
+    void throwIllegalArgumentExceptionIfGoingToSetMinus() {
+        Laps laps = new Laps();
+
+        assertThatThrownBy(() -> {
+            laps.setLap(-1);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }
