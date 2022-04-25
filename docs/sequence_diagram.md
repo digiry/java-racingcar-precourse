@@ -47,7 +47,7 @@ sequenceDiagram
         GameBoard -->> InitState : evaluateData(context)
 
         GameBoard -->> InitState: nextState()
-        InitState -->> GameBoard: setState(InputState)
+        InitState -->> GameBoard: setState(InputCarNamesState)
     end
 ```
 
