@@ -17,21 +17,25 @@ public class LapResultState implements State {
 
     @Override
     public void viewUpdate() {
-        
+        gameController.printLapResult();
     }
 
     @Override
     public Context readInput() {
-        return null;
+        return new Context();
     }
 
     @Override
     public void evaluateData(Context context) {
-
+        // Nothing
     }
 
     @Override
     public void nextState() {
-
+        if (gameController.isFinished()) {
+            gameBoard.setState(gameBoard.getWinnerResultState());
+        } else {
+            gameBoard.setState(gameBoard.getOnLapState());
+        }
     }
 }
