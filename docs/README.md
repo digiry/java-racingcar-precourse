@@ -23,7 +23,7 @@
 - [x] GameController: Circuit 와 GameView 를 호출하는 함수들을 구현한다
 - [x] Context: GameBoard 와 State 사이에서 주고받을 게임 정보를 구현한다
 - [x] GameState: interface 를 선언하기
-- [ ] GameState: 모든 게임 상태를 빈 구현체로 추가하기
+- [x] GameState: 모든 게임 상태를 빈 구현체로 추가하기
 - [ ] GameBoard: 모든 게임 상태를 준비하고 GameBoard 를 통해서 상태를 읽고 설정하는 함수를 구현하기
 - [ ] GameBoard: 게임을 실행하는 함수를 구현하기
 - [ ] States: 각 State 마다 필요한 동작을 정의하고 구체화하기
