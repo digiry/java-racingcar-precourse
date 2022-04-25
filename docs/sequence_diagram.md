@@ -100,7 +100,6 @@ sequenceDiagram
         GameController -->> Circuit : registerCarEntries(carnames)
 
         loop foreach name in CommaSeparatedCarNames
-            Circuit -->> Circuit : registerCar(name)
             Circuit -->> RacingCarEntries : addNewRacingCar(name)
             RacingCarEntries -->> RacingCar : new RacingCar(name)
             RacingCar --> CarName : new CarName(name)
