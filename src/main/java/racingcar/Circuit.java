@@ -9,6 +9,11 @@ public class Circuit {
         laps = new Laps();
     }
 
+    public Circuit(RacingCarEntries car_entries, Laps lap_count) {
+        entries = car_entries;
+        laps = lap_count;
+    }
+
     public void registerCarEntries(CommaSeparatedCarNames car_names) {
         for (CarName name : car_names) {
             entries.addNewRacingCar(name);
@@ -33,5 +38,14 @@ public class Circuit {
         }
 
         return false;
+    }
+
+    public void takeALap() {
+        entries.takeALap();
+        laps.decrease();
+    }
+
+    public CommaSeparatedCarNames getWinnerNames() {
+        return entries.getWinnerNames();
     }
 }
