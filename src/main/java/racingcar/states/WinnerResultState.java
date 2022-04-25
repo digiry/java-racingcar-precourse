@@ -17,21 +17,21 @@ public class WinnerResultState implements State {
 
     @Override
     public void viewUpdate() {
-        
+        gameController.printWinnerResult();
     }
 
     @Override
     public Context readInput() {
-        return null;
+        return new Context();
     }
 
     @Override
     public void evaluateData(Context context) {
-
+        // Nothing
     }
 
     @Override
     public void nextState() {
-
+        gameBoard.setState(gameBoard.getCloseState());
     }
 }
