@@ -1,25 +1,15 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static racingcar.TestUtil.makeRacingCarArrayListWithFixedDistance;
+import static racingcar.TestUtil.makeRacingCarArrayListWithRandomValue;
+import static racingcar.TestUtil.parseCarName;
 
 import java.util.ArrayList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.RacingCar.RandomUtil;
 
 public class RacingCarEntriesTest {
-    class FakeRandomUtil implements RandomUtil {
-        Integer testNumber;
-
-        FakeRandomUtil(Integer number) {
-            testNumber = number;
-        }
-
-        @Override
-        public int getNumberInRange(int startInclusive, int endInclusive) {
-            return testNumber;
-        }
-    }
 
     @Test
     @DisplayName("경주 자동차 3대 추가를 검사한다")
@@ -34,31 +24,6 @@ public class RacingCarEntriesTest {
             CarName name = entries.get(i).getCarName();
             assertThat(new String[]{"a_car", "b_car", "c_car"}).contains(name.toString());
         }
-    }
-
-    String parseCarName(String name_random) {
-        String[] nameWithRandom = name_random.split(":");
-        return nameWithRandom[0];
-    }
-
-    int parseRandomValue(String name_random) {
-        String[] nameWithRandom = name_random.split(":");
-        return Integer.parseInt(nameWithRandom[1]);
-    }
-
-    RacingCarEntries makeRacingCarArrayListWithRandomValue(String[] carName_random_list) {
-        ArrayList<RacingCar> car_list = new ArrayList<>();
-
-        for (String name_random : carName_random_list) {
-            String name = parseCarName(name_random);
-            int random = parseRandomValue(name_random);
-            RandomUtil fakeRandomUtil = new FakeRandomUtil(random);
-            RacingCar car = new RacingCar(new CarName(name), fakeRandomUtil);
-
-            car_list.add(car);
-        }
-
-        return new RacingCarEntries(car_list);
     }
 
     @Test
@@ -91,34 +56,6 @@ public class RacingCarEntriesTest {
         }
     }
 
-    RacingCar makeRacingCarMovedAs(String car_name, int step) {
-        RacingCar car = new RacingCar(new CarName(car_name));
-
-        for (int i = 0; i < step; ++i) {
-            car.move();
-        }
-
-        return car;
-    }
-
-    int parseDistance(String name_dist) {
-        String[] nameWithDist = name_dist.split(":");
-        return Integer.parseInt(nameWithDist[1]);
-    }
-
-    RacingCarEntries makeRacingCarArrayListWithFixedDistance(String[] carName_dist_list) {
-        ArrayList<RacingCar> car_list = new ArrayList<>();
-
-        for (String name_dist : carName_dist_list) {
-            String name = parseCarName(name_dist);
-            int dist = parseDistance(name_dist);
-            RacingCar car = makeRacingCarMovedAs(name, dist);
-
-            car_list.add(car);
-        }
-
-        return new RacingCarEntries(car_list);
-    }
 
     @Test
     @DisplayName("3,4,5 이동한 자동차를 멀리 이동한 순으로 정렬되는지 검사한다")

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.RacingCar.RandomUtil;
+import racingcar.TestUtil.FakeRandomUtil;
 
 public class RacingCarTest {
 
@@ -29,19 +30,6 @@ public class RacingCarTest {
         int result = a_car.compareTo(b_car);
 
         assertThat(result).isEqualTo(expected);
-    }
-
-    class FakeRandomUtil implements RandomUtil {
-        Integer testNumber;
-
-        FakeRandomUtil(Integer number) {
-            testNumber = number;
-        }
-
-        @Override
-        public int getNumberInRange(int startInclusive, int endInclusive) {
-            return testNumber;
-        }
     }
 
     RacingCar makeRacingCarWithRandomValue(String car_name, int number) {
