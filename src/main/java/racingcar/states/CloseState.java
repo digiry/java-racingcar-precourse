@@ -17,21 +17,21 @@ public class CloseState implements State {
 
     @Override
     public void viewUpdate() {
-        
+        gameController.printCloseMessage();
     }
 
     @Override
     public Context readInput() {
-        return null;
+        return new Context();
     }
 
     @Override
     public void evaluateData(Context context) {
-
+        // Nothing
     }
 
     @Override
     public void nextState() {
-
+        gameBoard.setState(gameBoard.getExitState());
     }
 }
