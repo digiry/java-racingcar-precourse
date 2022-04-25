@@ -16,21 +16,21 @@ public class InitState implements State {
 
     @Override
     public void viewUpdate() {
-
+        // Nothing
     }
 
     @Override
     public Context readInput() {
-        return null;
+        return new Context();
     }
 
     @Override
     public void evaluateData(Context context) {
-
+        // Nothing
     }
 
     @Override
     public void nextState() {
-
+        gameBoard.setState(gameBoard.getInputCarNamesState());
     }
 }
