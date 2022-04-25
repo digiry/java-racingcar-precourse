@@ -1,9 +1,19 @@
 package racingcar.states;
 
 import racingcar.Context;
+import racingcar.GameBoard;
+import racingcar.GameController;
 import racingcar.State;
 
 public class InputLapCountState implements State {
+
+    private GameBoard gameBoard;
+    private GameController gameController;
+
+    public InputLapCountState(GameBoard board, GameController controller) {
+        gameBoard = board;
+        gameController = controller;
+    }
 
     @Override
     public void viewUpdate() {
