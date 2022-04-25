@@ -17,21 +17,21 @@ public class OnLapState implements State {
 
     @Override
     public void viewUpdate() {
-        
+        // Nothing
     }
 
     @Override
     public Context readInput() {
-        return null;
+        return new Context();
     }
 
     @Override
     public void evaluateData(Context context) {
-
+        gameController.takeALap();
     }
 
     @Override
     public void nextState() {
-
+        gameBoard.setState(gameBoard.getLapResultState());
     }
 }
