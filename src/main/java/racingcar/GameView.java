@@ -38,7 +38,7 @@ public class GameView {
     }
 
     public void printCurrentResult(RacingCar car) {
-        String message = String.format("%s: %s", car.getCarName(), car.getDistance().toDashMarkup());
+        String message = String.format("%s : %s", car.getCarName(), car.getDistance().toDashMarkup());
         System.out.println(message);
     }
 
