@@ -164,6 +164,9 @@ sequenceDiagram
         GameBoard -->> OnLapState : viewUpdate()
 
         GameBoard -->> OnLapState : readInput()
+        OnLapState -->> GameBoard : Context(empty)
+
+        GameBoard -->> OnLapState : evaluateData(context)
 
         OnLapState -->> GameController : takeALap()
         GameController -->> Circuit : takeALap()
@@ -180,9 +183,6 @@ sequenceDiagram
 
         Circuit -->>+ Circuit : decreaseLaps()
         Circuit -->>- Laps : decrease()
-        OnLapState -->> GameBoard : Context(empty)
-
-        GameBoard -->> OnLapState : evaluateData(context)
 
         GameBoard -->> OnLapState : nextState()
         OnLapState -->> GameBoard : setState(LapResultState)
