@@ -20,8 +20,7 @@
 - [x] GameView: 화면 출력 함수를 모두 구현한다
 - [x] GameView: 참가 자동차들 이름을 입력 받는 함수를 구현한다
 - [x] GameView: 서킷 총 이동 횟수를 입력 받는 함수를 구현한다
-- [ ] GameController: Circuit 와 GameView 를 호출하는 함수들을 구현한다
-- [ ] GameController: 빈 값을 반환하는 함수를 구현하기
+- [x] GameController: Circuit 와 GameView 를 호출하는 함수들을 구현한다
 - [ ] Context: GameBoard 와 State 사이에서 주고받을 게임 정보를 구현한다
 - [ ] GameState: interface 를 선언하기
 - [ ] GameState: 모든 게임 상태를 빈 구현체로 추가하기

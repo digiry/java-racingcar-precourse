@@ -42,11 +42,9 @@ sequenceDiagram
         GameBoard -->> InitState: viewUpdate()
 
         GameBoard -->> InitState: readInput()
-        InitState -->> GameController: getEmptyInputData()
-        GameController -->> InitState: empty
+        InitState -->> GameBoard : Context(empty)
 
-        GameBoard -->> InitState: evaluateData(empty)
-        InitState -->> GameController: evaluateData(empty)
+        GameBoard -->> InitState : evaluateData(context)
 
         GameBoard -->> InitState: nextState()
         InitState -->> GameBoard: setState(InputState)
@@ -166,12 +164,7 @@ sequenceDiagram
         GameBoard -->> OnLapState : viewUpdate()
 
         GameBoard -->> OnLapState : readInput()
-        OnLapState -->> GameController : getEmptyInputData()
-        GameController -->> OnLapState : empty
-        OnLapState -->> GameBoard : empty
 
-        GameBoard -->> OnLapState : evaluateData(empty)
-        OnLapState -->> GameController : evaluateData(empty)
         OnLapState -->> GameController : takeALap()
         GameController -->> Circuit : takeALap()
         Circuit -->> RacingCarEntries : takeALap()
@@ -187,6 +180,9 @@ sequenceDiagram
 
         Circuit -->>+ Circuit : decreaseLaps()
         Circuit -->>- Laps : decrease()
+        OnLapState -->> GameBoard : Context(empty)
+
+        GameBoard -->> OnLapState : evaluateData(context)
 
         GameBoard -->> OnLapState : nextState()
         OnLapState -->> GameBoard : setState(LapResultState)
@@ -221,12 +217,9 @@ sequenceDiagram
         end
 
         GameBoard -->> LapResultState : readInput()
-        LapResultState -->> GameController : getEmptyInputData()
-        GameController -->> LapResultState : empty
-        LapResultState -->> GameBoard : empty
+        LapResultState -->> GameBoard : Context(empty)
 
         GameBoard -->> LapResultState : evaluateData(empty)
-        LapResultState -->> GameController : evaluateData(empty)
 
         GameBoard -->> LapResultState : nextState()
         LapResultState -->> GameController : isFinished()
@@ -280,12 +273,9 @@ sequenceDiagram
         GameView -->> CommaSeparatedCarNames : toString()
 
         GameBoard -->> WinnerResultState : readInput()
-        WinnerResultState -->> GameController : getEmptyInputData()
-        GameController -->> WinnerResultState : empty
-        WinnerResultState -->> GameBoard : empty
+        WinnerResultState -->> GameBoard : Context(empty)
 
-        GameBoard -->> WinnerResultState : evaluateData(empty)
-        WinnerResultState -->> GameController : evaluateData(empty)
+        GameBoard -->> WinnerResultState : evaluateData(context)
         
         GameBoard -->> WinnerResultState : nextState()
         WinnerResultState -->> GameBoard : setState(CloseState)
@@ -309,12 +299,9 @@ sequenceDiagram
     GameController -->> GameView : printCloseMessage()
 
     GameBoard -->> CloseState : readInput()
-    CloseState -->> GameController : getEmptyInputData()
-    GameController -->> CloseState : empty
-    CloseState -->> GameBoard : empty
+    CloseState -->> GameBoard : Context(empty)
 
-    GameBoard -->> CloseState : evaluateData(empty)
-    CloseState -->> GameController : evaluateData(empty)
+    GameBoard -->> CloseState : evaluateData(context)
 
     GameBoard -->> CloseState : nextState()
     CloseState -->> GameBoard : setState(ExitState)

@@ -59,8 +59,6 @@ classDiagram
         +setState()
     }
     class GameController {
-        +getEmptyInputData()
-        
         +registerCarEntries()
         +registerLapCount()
 
