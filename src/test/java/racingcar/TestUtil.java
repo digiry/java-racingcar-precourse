@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.ArrayList;
+import racingcar.GameView.ConsoleUtil;
 import racingcar.RacingCar.RandomUtil;
 
 public class TestUtil {
@@ -14,6 +15,25 @@ public class TestUtil {
         @Override
         public int getNumberInRange(int startInclusive, int endInclusive) {
             return testNumber;
+        }
+    }
+
+    static class FakeConsoleUtil implements ConsoleUtil {
+        String input_string;
+        boolean isFirst;
+
+        FakeConsoleUtil(String test_string) {
+            input_string = test_string;
+            isFirst = true;
+        }
+
+        @Override
+        public String readLine() {
+            if (isFirst) {
+                isFirst = false;
+                return input_string;
+            }
+            return "0";
         }
     }
 

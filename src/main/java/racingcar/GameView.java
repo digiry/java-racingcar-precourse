@@ -1,8 +1,16 @@
 package racingcar;
 
-public class GameView {
-    public GameView() {
+import camp.nextstep.edu.missionutils.Console;
 
+public class GameView {
+    private final ConsoleUtil consoleUtil;
+
+    public GameView() {
+        consoleUtil = new NextstepConsoleUtil();
+    }
+
+    public GameView(ConsoleUtil util) {
+        consoleUtil = util;
     }
 
     public void printCarNamesInputRequestMessage() {
@@ -44,5 +52,45 @@ public class GameView {
 
     public void printCloseMessage() {
         System.out.println("게임 종료");
+    }
+
+    public CommaSeparatedCarNames readCarNames() {
+        String input_car_names = consoleUtil.readLine();
+        CommaSeparatedCarNames car_names;
+
+        try {
+            car_names = new CommaSeparatedCarNames(input_car_names);
+        } catch (IllegalArgumentException error) {
+            printCarNamesErrorMessage();
+            return readCarNames();
+        }
+
+        return car_names;
+    }
+
+    public Laps readLapCount() {
+        int lap_count = Integer.parseInt(consoleUtil.readLine());
+        Laps laps = new Laps();
+
+        try {
+            laps.setNumericLap(lap_count);
+        } catch (IllegalArgumentException error) {
+            printLapCountErrorMessage();
+            return readLapCount();
+        }
+
+        return laps;
+    }
+
+    public interface ConsoleUtil {
+        String readLine();
+    }
+
+    public static class NextstepConsoleUtil implements ConsoleUtil {
+
+        @Override
+        public String readLine() {
+            return Console.readLine();
+        }
     }
 }
