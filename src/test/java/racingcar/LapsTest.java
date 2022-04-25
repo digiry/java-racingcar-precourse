@@ -16,11 +16,22 @@ public class LapsTest {
     }
 
     @Test
+    @DisplayName("다른 Laps와 같은 횟수로 값을 할당하는지 검사한다")
+    void setLapCountFromOtherLaps() {
+        Laps otherLaps = new Laps(5);
+        Laps laps = new Laps();
+
+        laps.setLaps(otherLaps);
+
+        assertThat(laps.getNumericLap()).isEqualTo(otherLaps.getNumericLap());
+    }
+
+    @Test
     @DisplayName("Laps가 한 바퀴 감소하는지 검사한다")
     void decreaseLapsCount() {
         Laps laps = new Laps();
 
-        laps.setLap(5);
+        laps.setNumericLap(5);
         laps.decrease();
 
         assertThat(laps.getNumericLap()).isEqualTo(4);
@@ -41,7 +52,7 @@ public class LapsTest {
     @DisplayName("Laps에 남은 이동 횟수가 없는지 검사한다")
     void hasRemainingLapCount() {
         Laps laps = new Laps();
-        laps.setLap(1);
+        laps.setNumericLap(1);
 
         assertThat(laps.hasRemainingLaps()).isTrue();
 
@@ -64,7 +75,7 @@ public class LapsTest {
         Laps laps = new Laps();
 
         assertThatThrownBy(() -> {
-            laps.setLap(-1);
+            laps.setNumericLap(-1);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

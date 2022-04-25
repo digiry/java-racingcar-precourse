@@ -23,9 +23,13 @@ public class Laps {
         return lap;
     }
 
-    public void setLap(int lap_count) {
+    public void setNumericLap(int lap_count) {
         validate(lap_count);
         lap = lap_count;
+    }
+
+    public void setLaps(Laps otherLaps) {
+        lap = otherLaps.getNumericLap();
     }
 
     public void decrease() {
